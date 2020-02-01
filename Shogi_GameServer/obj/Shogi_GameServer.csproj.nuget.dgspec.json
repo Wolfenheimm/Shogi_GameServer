@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jesse\\source\\repos\\Shogi_GameServer\\Shogi_GameServer\\Shogi_GameServer.csproj": {}
+    "C:\\Users\\jesse\\Documents\\GitHub\\Shogi_GameServer\\Shogi_GameServer\\Shogi_GameServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jesse\\source\\repos\\Shogi_GameServer\\Shogi_GameServer\\Shogi_GameServer.csproj": {
+    "C:\\Users\\jesse\\Documents\\GitHub\\Shogi_GameServer\\Shogi_GameServer\\Shogi_GameServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jesse\\source\\repos\\Shogi_GameServer\\Shogi_GameServer\\Shogi_GameServer.csproj",
+        "projectUniqueName": "C:\\Users\\jesse\\Documents\\GitHub\\Shogi_GameServer\\Shogi_GameServer\\Shogi_GameServer.csproj",
         "projectName": "Shogi_GameServer",
-        "projectPath": "C:\\Users\\jesse\\source\\repos\\Shogi_GameServer\\Shogi_GameServer\\Shogi_GameServer.csproj",
+        "projectPath": "C:\\Users\\jesse\\Documents\\GitHub\\Shogi_GameServer\\Shogi_GameServer\\Shogi_GameServer.csproj",
         "packagesPath": "C:\\Users\\jesse\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jesse\\source\\repos\\Shogi_GameServer\\Shogi_GameServer\\obj\\",
+        "outputPath": "C:\\Users\\jesse\\Documents\\GitHub\\Shogi_GameServer\\Shogi_GameServer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
