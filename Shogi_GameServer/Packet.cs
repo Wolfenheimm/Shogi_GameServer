@@ -18,7 +18,8 @@ namespace Shogi_GameServer
     public enum ClientPackets
     {
         welcomeReceived = 1,
-        playerMovement
+        playerMovement,
+        moveset
     }
 
     public class Packet : IDisposable

@@ -58,7 +58,8 @@ namespace Shogi_GameServer
 
             packetHandlers = new Dictionary<int, PacketHandler>()
             {
-                {(int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived }
+                {(int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived },
+                {(int)ClientPackets.moveset, ServerHandle.PlayerMoveSet }
             };
 
             Console.WriteLine("Initialized packets.");

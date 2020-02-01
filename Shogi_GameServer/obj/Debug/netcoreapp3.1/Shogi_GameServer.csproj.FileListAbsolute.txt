@@ -9,3 +9,14 @@ C:\Users\jesse\source\repos\Shogi_GameServer\Shogi_GameServer\obj\Debug\netcorea
 C:\Users\jesse\source\repos\Shogi_GameServer\Shogi_GameServer\obj\Debug\netcoreapp3.1\Shogi_GameServer.AssemblyInfo.cs
 C:\Users\jesse\source\repos\Shogi_GameServer\Shogi_GameServer\obj\Debug\netcoreapp3.1\Shogi_GameServer.dll
 C:\Users\jesse\source\repos\Shogi_GameServer\Shogi_GameServer\obj\Debug\netcoreapp3.1\Shogi_GameServer.pdb
+C:\Users\jesse\Documents\GitHub\Shogi_GameServer\Shogi_GameServer\bin\Debug\netcoreapp3.1\Shogi_GameServer.exe
+C:\Users\jesse\Documents\GitHub\Shogi_GameServer\Shogi_GameServer\bin\Debug\netcoreapp3.1\Shogi_GameServer.deps.json
+C:\Users\jesse\Documents\GitHub\Shogi_GameServer\Shogi_GameServer\bin\Debug\netcoreapp3.1\Shogi_GameServer.runtimeconfig.json
+C:\Users\jesse\Documents\GitHub\Shogi_GameServer\Shogi_GameServer\bin\Debug\netcoreapp3.1\Shogi_GameServer.runtimeconfig.dev.json
+C:\Users\jesse\Documents\GitHub\Shogi_GameServer\Shogi_GameServer\bin\Debug\netcoreapp3.1\Shogi_GameServer.dll
+C:\Users\jesse\Documents\GitHub\Shogi_GameServer\Shogi_GameServer\bin\Debug\netcoreapp3.1\Shogi_GameServer.pdb
+C:\Users\jesse\Documents\GitHub\Shogi_GameServer\Shogi_GameServer\obj\Debug\netcoreapp3.1\Shogi_GameServer.csprojAssemblyReference.cache
+C:\Users\jesse\Documents\GitHub\Shogi_GameServer\Shogi_GameServer\obj\Debug\netcoreapp3.1\Shogi_GameServer.AssemblyInfoInputs.cache
+C:\Users\jesse\Documents\GitHub\Shogi_GameServer\Shogi_GameServer\obj\Debug\netcoreapp3.1\Shogi_GameServer.AssemblyInfo.cs
+C:\Users\jesse\Documents\GitHub\Shogi_GameServer\Shogi_GameServer\obj\Debug\netcoreapp3.1\Shogi_GameServer.dll
+C:\Users\jesse\Documents\GitHub\Shogi_GameServer\Shogi_GameServer\obj\Debug\netcoreapp3.1\Shogi_GameServer.pdb
