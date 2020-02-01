@@ -158,5 +158,13 @@ namespace Shogi_GameServer
                 }
             }
         }
+
+        public void SendBoardData()
+        {
+            foreach(Piece _piece in Server.pieces.Values)
+            {
+                ServerSend.SpawnPieces(id, _piece);
+            }
+        }
     }
 }

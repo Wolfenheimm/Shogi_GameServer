@@ -11,7 +11,8 @@ namespace Shogi_GameServer
         welcome = 1,
         spawnPlayer,
         playerPosition,
-        playerRotation
+        playerRotation,
+        spawnPiece
     }
 
     /// <summary>Sent from client to server.</summary>

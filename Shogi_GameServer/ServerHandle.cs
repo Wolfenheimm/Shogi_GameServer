@@ -19,6 +19,7 @@ namespace Shogi_GameServer
 
             //Send player into game
             Server.clients[_fromClient].SendIntoGame(_username);
+            Server.clients[_fromClient].SendBoardData();
         }
         public static void PlayerMoveSet(int _fromClient, Packet _packet)
         {

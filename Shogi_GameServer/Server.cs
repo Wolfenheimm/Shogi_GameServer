@@ -14,6 +14,7 @@ namespace Shogi_GameServer
         public static Dictionary<int, Client> clients = new Dictionary<int, Client>();
         public delegate void PacketHandler(int _fromClient, Packet _packet);
         public static Dictionary<int, PacketHandler> packetHandlers;
+        public static Dictionary<int, Piece> pieces = new Dictionary<int, Piece>();
 
         public static void Start(int _maxPlayers, int _port)
         {
@@ -21,7 +22,7 @@ namespace Shogi_GameServer
             Port = _port;
 
             Console.WriteLine("Starting server...");
-
+            InitializeBoard();
             InitializeServerData();
 
             tcpListener = new TcpListener(IPAddress.Any, Port);
@@ -36,7 +37,7 @@ namespace Shogi_GameServer
             TcpClient _client = tcpListener.EndAcceptTcpClient(_result);
             tcpListener.BeginAcceptTcpClient(new AsyncCallback(TCPConnectCallback), null);
             Console.WriteLine($"Incoming connection from { _client.Client.RemoteEndPoint}... ");
-
+            
             for (int i = 1; i <= MaxPlayers; i++)
             {
                 if (clients[i].tcp.socket == null)
@@ -63,6 +64,16 @@ namespace Shogi_GameServer
             };
 
             Console.WriteLine("Initialized packets.");
+        }
+
+        private static void InitializeBoard()
+        {
+            // Fuhyo
+            for (int x = 0; x < 9; x++)
+            {
+                Piece piece = new Piece(1, "Fuhyo", x, 2);
+                pieces.Add(x, piece);
+            }
         }
     }
 }
