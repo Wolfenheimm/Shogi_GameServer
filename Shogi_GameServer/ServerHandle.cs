@@ -30,15 +30,23 @@ namespace Shogi_GameServer
         }
         public static void PlayerMoveSet(int _fromClient, Packet _packet)
         {
+            int _pieceKey = _packet.ReadInt();
             int _clientId = _packet.ReadInt();
             string _clientName = _packet.ReadString();
             string _pieceName = _packet.ReadString();
             int _clientInitX = _packet.ReadInt();
             int _clientInitY = _packet.ReadInt();
-            int _clientMoveX = _packet.ReadInt();
-            int _clientMoveY = _packet.ReadInt();
+            int _clientFinX = _packet.ReadInt();
+            int _clientFinY = _packet.ReadInt();
 
-            Console.WriteLine($"ID: {_clientId} - User {_clientName} wishes to move piece '{_pieceName}' from (X:{_clientInitX}, Y:{_clientInitY}) to (X:{_clientMoveX}, Y:{_clientMoveY})");
+            Piece piece = new Piece(_pieceKey, _clientId, _pieceName, _clientInitX, _clientInitY, _clientFinX, _clientFinY);
+            Console.WriteLine($"ID: {_clientId} - User {_clientName} wishes to move piece '{_pieceName}' from (X:{_clientInitX}, Y:{_clientInitY}) to (X:{_clientFinX}, Y:{_clientFinY})");
+
+            ServerSend.MovePiece(_clientId, piece);
+            Console.WriteLine($"ID: {_clientId} - Move granted. User {_clientName} has moved '{_pieceName}' from (X:{_clientInitX}, Y:{_clientInitY}) to (X:{_clientFinX}, Y:{_clientFinY})");
+
+            Server.pieces[_pieceKey] = new Piece(_pieceKey, _clientId, _pieceName, _clientFinX, _clientFinY);
+            Console.WriteLine($"{_pieceName} @ Key {_pieceKey} has been updated on the board");
         }
     }
 }

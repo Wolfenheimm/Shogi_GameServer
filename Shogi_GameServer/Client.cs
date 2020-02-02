@@ -170,7 +170,7 @@ namespace Shogi_GameServer
         {
             foreach(Piece _piece in Server.pieces.Values)
             {
-                ServerSend.SpawnPieces(id, _piece);
+                ServerSend.SpawnPiece(id, _piece);
             }
         }
     }

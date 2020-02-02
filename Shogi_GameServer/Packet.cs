@@ -12,7 +12,8 @@ namespace Shogi_GameServer
         spawnPlayer,
         playerPosition,
         playerRotation,
-        spawnPiece
+        spawnPiece,
+        movePiece
     }
 
     /// <summary>Sent from client to server.</summary>

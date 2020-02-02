@@ -58,14 +58,32 @@ namespace Shogi_GameServer
             }
         }
 
-        public static void SpawnPieces(int _toClient, Piece _piece)
+        public static void SpawnPiece(int _toClient, Piece _piece)
         {
+            Console.WriteLine($"sending Key {_piece.key}");
             using (Packet _packet = new Packet((int)ServerPackets.spawnPiece))
             {
+                _packet.Write(_piece.key);
                 _packet.Write(_piece.id);
                 _packet.Write(_piece.pieceName);
                 _packet.Write(_piece.posX);
                 _packet.Write(_piece.posY);
+
+                SendTCPData(_toClient, _packet);
+            }
+        }
+
+        public static void MovePiece(int _toClient, Piece _piece)
+        {
+            using (Packet _packet = new Packet((int)ServerPackets.movePiece))
+            {
+                _packet.Write(_piece.key);
+                _packet.Write(_piece.id);
+                _packet.Write(_piece.pieceName);
+                _packet.Write(_piece.posX);
+                _packet.Write(_piece.posY);
+                _packet.Write(_piece.finPosX);
+                _packet.Write(_piece.finPosY);
 
                 SendTCPData(_toClient, _packet);
             }
