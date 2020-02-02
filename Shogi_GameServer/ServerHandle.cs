@@ -42,9 +42,12 @@ namespace Shogi_GameServer
             Piece piece = new Piece(_pieceKey, _clientId, _pieceName, _clientInitX, _clientInitY, _clientFinX, _clientFinY);
             Console.WriteLine($"ID: {_clientId} - User {_clientName} wishes to move piece '{_pieceName}' from (X:{_clientInitX}, Y:{_clientInitY}) to (X:{_clientFinX}, Y:{_clientFinY})");
 
-            ServerSend.MovePiece(_clientId, piece);
+            // Send move to both players
+            ServerSend.MovePiece(1, piece);
+            ServerSend.MovePiece(2, piece);
             Console.WriteLine($"ID: {_clientId} - Move granted. User {_clientName} has moved '{_pieceName}' from (X:{_clientInitX}, Y:{_clientInitY}) to (X:{_clientFinX}, Y:{_clientFinY})");
 
+            // Update the piece dictionary on move
             Server.pieces[_pieceKey] = new Piece(_pieceKey, _clientId, _pieceName, _clientFinX, _clientFinY);
             Console.WriteLine($"{_pieceName} @ Key {_pieceKey} has been updated on the board");
         }
