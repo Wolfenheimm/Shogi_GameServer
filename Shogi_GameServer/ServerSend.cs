@@ -22,7 +22,7 @@ namespace Shogi_GameServer
             }
         }
 
-        private static void SeendTCPDataToAll(int _exceptClient, Packet _packet)
+        private static void SendTCPDataToAll(int _exceptClient, Packet _packet)
         {
             _packet.WriteLength();
             for(int i = 1; i <= Server.MaxPlayers; i++)

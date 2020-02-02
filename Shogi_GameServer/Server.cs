@@ -22,7 +22,6 @@ namespace Shogi_GameServer
             Port = _port;
 
             Console.WriteLine("Starting server...");
-            InitializeBoard();
             InitializeServerData();
 
             tcpListener = new TcpListener(IPAddress.Any, Port);
@@ -66,14 +65,98 @@ namespace Shogi_GameServer
             Console.WriteLine("Initialized packets.");
         }
 
-        private static void InitializeBoard()
+        public static void InitializeBoard()
         {
+            int key = 0;
+            int playerOne = 1;
+            int playerTwo = 2;
+
+            // Gyokusho
+            Piece Gyokusho_A = new Piece(playerOne, "Gyokusho", 4, 0);
+            Console.WriteLine($"Player 1 Gyokusho piece added on key value {key}");
+            pieces.Add(key++, Gyokusho_A);
+
+            Piece Gyokusho_B = new Piece(playerTwo, "Gyokusho", 4, 8);
+            Console.WriteLine($"Player 1 Gyokusho piece added on key value {key}");
+            pieces.Add(key++, Gyokusho_B);            
+
             // Fuhyo
             for (int x = 0; x < 9; x++)
             {
-                Piece piece = new Piece(1, "Fuhyo", x, 2);
-                pieces.Add(x, piece);
+                Piece Fuhyo_A = new Piece(playerOne, "Fuhyo", x, 2);
+                Console.WriteLine($"Player 1 Fuhyo piece added on key value {key}");
+                pieces.Add(key++, Fuhyo_A);                
+
+                Piece Fuhyo_B = new Piece(playerTwo, "Fuhyo", x, 6);
+                Console.WriteLine($"Player 2 Fuhyo piece added on key value {key}");
+                pieces.Add(key++, Fuhyo_B);                
             }
+
+            // Kinsho
+            for (int x = 3; x <= 5; x += 2)
+            {
+                Piece Kinsho_A = new Piece(playerOne, "Kinsho", x, 0);
+                Console.WriteLine($"Player 1 Kinsho piece added on key value {key}");
+                pieces.Add(key++, Kinsho_A);                
+
+                Piece Kinsho_B = new Piece(playerTwo, "Kinsho", x, 8);
+                Console.WriteLine($"Player 1 Kinsho piece added on key value {key}");
+                pieces.Add(key++, Kinsho_B);                
+            }
+
+            // Ginsho
+            for (int x = 2; x <= 6; x += 4)
+            {
+                Piece Ginsho_A = new Piece(playerOne, "Ginsho", x, 0);
+                Console.WriteLine($"Player 1 Ginsho piece added on key value {key}");
+                pieces.Add(key++, Ginsho_A);                
+
+                Piece Ginsho_B = new Piece(playerTwo, "Ginsho", x, 8);
+                Console.WriteLine($"Player 1 Ginsho piece added on key value {key}");
+                pieces.Add(key++, Ginsho_B);              
+            }
+
+            // Keiema
+            for (int x = 1; x <= 7; x += 6)
+            {
+                Piece Keiema_A = new Piece(playerOne, "Keiema", x, 0);
+                Console.WriteLine($"Player 1 Keiema piece added on key value {key}");
+                pieces.Add(key++, Keiema_A);                
+
+                Piece Keiema_B = new Piece(playerTwo, "Keiema", x, 8);
+                Console.WriteLine($"Player 1 Keiema piece added on key value {key}");
+                pieces.Add(key++, Keiema_B);                
+            }
+
+            // Kyosha
+            for (int x = 0; x <= 8; x += 8)
+            {
+                Piece Kyosha_A = new Piece(playerOne, "Kyosha", x, 0);
+                Console.WriteLine($"Player 1 Kyosha piece added on key value {key}");
+                pieces.Add(key++, Kyosha_A);                
+
+                Piece Kyosha_B = new Piece(playerTwo, "Kyosha", x, 8);
+                Console.WriteLine($"Player 1 Kyosha piece added on key value {key}");
+                pieces.Add(key++, Kyosha_B);                
+            }
+
+            // Kakugyo
+            Piece Kakugyo_A = new Piece(playerOne, "Kakugyo", 1, 1);
+            Console.WriteLine($"Player 1 Kakugyo piece added on key value {key}");
+            pieces.Add(key++, Kakugyo_A);
+
+            Piece Kakugyo_B = new Piece(playerTwo, "Kakugyo", 7, 7);
+            Console.WriteLine($"Player 1 Kakugyo piece added on key value {key}");
+            pieces.Add(key++, Kakugyo_B);
+
+            // Hisha
+            Piece Hisha_A = new Piece(playerOne, "Hisha", 1, 1);
+            Console.WriteLine($"Player 1 Hisha piece added on key value {key}");
+            pieces.Add(key++, Kakugyo_A);
+
+            Piece Hisha_B = new Piece(playerTwo, "Hisha", 7, 7);
+            Console.WriteLine($"Player 1 Hisha piece added on key value {key}");
+            pieces.Add(key++, Kakugyo_B);
         }
     }
 }

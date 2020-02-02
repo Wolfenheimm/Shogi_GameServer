@@ -19,7 +19,14 @@ namespace Shogi_GameServer
 
             //Send player into game
             Server.clients[_fromClient].SendIntoGame(_username);
-            Server.clients[_fromClient].SendBoardData();
+
+            // Second player connected, init and send board data
+            if (_fromClient == 2)
+            {
+                Server.InitializeBoard();
+                Server.clients[1].SendBoardData();
+                Server.clients[2].SendBoardData();
+            }
         }
         public static void PlayerMoveSet(int _fromClient, Packet _packet)
         {

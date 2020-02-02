@@ -137,7 +137,14 @@ namespace Shogi_GameServer
 
         public void SendIntoGame(string _playername)
         {
-            player = new Player(id, _playername, new System.Numerics.Vector3(0, 0, 0));
+            if (id == 1)
+            {
+                player = new Player(id, _playername, new System.Numerics.Vector3((float)4.5, 0, -1));
+            }
+            else if (id == 2)
+            {
+                player = new Player(id, _playername, new System.Numerics.Vector3((float)4.5, 0, 10));
+            }
 
             foreach(Client _client in Server.clients.Values)
             {
