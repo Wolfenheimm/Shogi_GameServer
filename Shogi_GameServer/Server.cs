@@ -15,6 +15,7 @@ namespace Shogi_GameServer
         public delegate void PacketHandler(int _fromClient, Packet _packet);
         public static Dictionary<int, PacketHandler> packetHandlers;
         public static Dictionary<int, Piece> pieces = new Dictionary<int, Piece>();
+        public static int playerTurn;
 
         public static void Start(int _maxPlayers, int _port)
         {
@@ -63,6 +64,9 @@ namespace Shogi_GameServer
             };
 
             Console.WriteLine("Initialized packets.");
+
+            playerTurn = 1;
+            Console.WriteLine("Set turn to 1.");
         }
 
         public static void InitializeBoard()

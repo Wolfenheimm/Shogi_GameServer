@@ -87,5 +87,15 @@ namespace Shogi_GameServer
                 SendTCPData(_toClient, _packet);
             }
         }
+
+        public static void NextTurn(int _toClient, int _playerTurn)
+        {
+            using (Packet _packet = new Packet((int)ServerPackets.playerTurn))
+            {
+                _packet.Write(_playerTurn);
+
+                SendTCPData(_toClient, _packet);
+            }
+        }
     }
 }

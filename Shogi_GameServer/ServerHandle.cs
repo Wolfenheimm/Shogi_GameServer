@@ -50,6 +50,18 @@ namespace Shogi_GameServer
             // Update the piece dictionary on move
             Server.pieces[_pieceKey] = new Piece(_pieceKey, _clientId, _pieceName, _clientFinX, _clientFinY);
             Console.WriteLine($"{_pieceName} @ Key {_pieceKey} has been updated on the board");
+
+            if(Server.playerTurn == 1)
+            {
+                Server.playerTurn = 2;
+            }
+            else
+            {
+                Server.playerTurn = 1;
+            }
+
+            ServerSend.NextTurn(1, Server.playerTurn);
+            ServerSend.NextTurn(2, Server.playerTurn);
         }
     }
 }
