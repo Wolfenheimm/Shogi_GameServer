@@ -6,7 +6,7 @@ namespace Shogi_GameServer
 {
     class Piece
     {
-        public int key;
+        public int pieceKey;
         public int id;
         public string pieceName;
         public int posX;
@@ -14,16 +14,18 @@ namespace Shogi_GameServer
         public int finPosX;
         public int finPosY;
 
-        public Piece(int key, int _clientId, string _pieceName, int _posX, int _posY)
+        public Piece(int _key, int _clientId, string _pieceName, int _posX, int _posY)
         {
+            pieceKey = _key;
             id = _clientId;
             pieceName = _pieceName;
             posX = _posX;
             posY = _posY;
         }
 
-        public Piece(int key, int _clientId, string _pieceName, int _posX, int _posY, int _finPosX, int _finPosY)
+        public Piece(int _key, int _clientId, string _pieceName, int _posX, int _posY, int _finPosX, int _finPosY)
         {
+            pieceKey = _key;
             id = _clientId;
             pieceName = _pieceName;
             posX = _posX;

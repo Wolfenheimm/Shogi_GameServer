@@ -119,13 +119,13 @@ namespace Shogi_GameServer
             // Keiema
             for (int x = 1; x <= 7; x += 6)
             {
-                Piece Keiema_A = new Piece(key, playerOne, "Keiema", x, 0);
-                Console.WriteLine($"Player 1 Keiema piece added on key value {key}");
-                pieces.Add(key++, Keiema_A);                
+                Piece Keima_A = new Piece(key, playerOne, "Keima", x, 0);
+                Console.WriteLine($"Player 1 Keima piece added on key value {key}");
+                pieces.Add(key++, Keima_A);                
 
-                Piece Keiema_B = new Piece(key, playerTwo, "Keiema", x, 8);
-                Console.WriteLine($"Player 1 Keiema piece added on key value {key}");
-                pieces.Add(key++, Keiema_B);                
+                Piece Keima_B = new Piece(key, playerTwo, "Keima", x, 8);
+                Console.WriteLine($"Player 1 Keima piece added on key value {key}");
+                pieces.Add(key++, Keima_B);                
             }
 
             // Kyosha
@@ -150,13 +150,13 @@ namespace Shogi_GameServer
             pieces.Add(key++, Kakugyo_B);
 
             // Hisha
-            Piece Hisha_A = new Piece(key, playerOne, "Hisha", 1, 1);
+            Piece Hisha_A = new Piece(key, playerOne, "Hisha", 7, 1);
             Console.WriteLine($"Player 1 Hisha piece added on key value {key}");
-            pieces.Add(key++, Kakugyo_A);
+            pieces.Add(key++, Hisha_A);
 
-            Piece Hisha_B = new Piece(key, playerTwo, "Hisha", 7, 7);
+            Piece Hisha_B = new Piece(key, playerTwo, "Hisha", 1, 7);
             Console.WriteLine($"Player 1 Hisha piece added on key value {key}");
-            pieces.Add(key++, Kakugyo_B);
+            pieces.Add(key++, Hisha_B);
         }
     }
 }
