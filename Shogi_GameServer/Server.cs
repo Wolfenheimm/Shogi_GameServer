@@ -13,6 +13,7 @@ namespace Shogi_GameServer
         private static TcpListener tcpListener;
         public static Dictionary<int, Client> clients = new Dictionary<int, Client>();
         public static int[] clientLogoff = new int[] {0,0,0};
+        public static int totalLoggedIn = 0;
         public delegate void PacketHandler(int _fromClient, Packet _packet);
         public static Dictionary<int, PacketHandler> packetHandlers;
         public static Dictionary<int, Piece> pieces = new Dictionary<int, Piece>();
@@ -38,17 +39,20 @@ namespace Shogi_GameServer
             TcpClient _client = tcpListener.EndAcceptTcpClient(_result);
             tcpListener.BeginAcceptTcpClient(new AsyncCallback(TCPConnectCallback), null);
             Console.WriteLine($"Incoming connection from { _client.Client.RemoteEndPoint}... ");
-            
-            for (int i = 1; i <= MaxPlayers; i++)
+
+            if (totalLoggedIn != 2)
             {
-                if (clients[i].tcp.socket == null)
+                for (int i = 1; i <= MaxPlayers; i++)
                 {
-                    clients[i].tcp.Connect(_client);
-                    return;
+                    if (clients[i].tcp.socket == null)
+                    {
+                        clients[i].tcp.Connect(_client);
+                        return;
+                    }
                 }
             }
 
-            Console.WriteLine($"{ _client.Client.RemoteEndPoint} failed to connect: Server is full.");
+            Console.WriteLine($"{ _client.Client.RemoteEndPoint} failed to connect: Server is full or game has not finished yet.");
         }
 
         public static void InitializeServerData()

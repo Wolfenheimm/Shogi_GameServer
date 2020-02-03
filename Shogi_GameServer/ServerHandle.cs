@@ -23,6 +23,9 @@ namespace Shogi_GameServer
             //Set Login Array
             Server.clientLogoff[_fromClient] = 1;
 
+            // Number of logged in players has incremented
+            Server.totalLoggedIn++;
+
             // Second player connected, init and send board data
             if (_fromClient == 2)
             {
@@ -88,6 +91,7 @@ namespace Shogi_GameServer
                 Console.WriteLine($"All clients have logged off, restarting server.");
                 Server.clients = new Dictionary<int, Client>();
                 Server.pieces = new Dictionary<int, Piece>();
+                Server.totalLoggedIn = 0;
                 Server.InitializeServerData();
             }
         }
