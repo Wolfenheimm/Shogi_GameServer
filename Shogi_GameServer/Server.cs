@@ -12,6 +12,7 @@ namespace Shogi_GameServer
         public static int Port { get; private set; }
         private static TcpListener tcpListener;
         public static Dictionary<int, Client> clients = new Dictionary<int, Client>();
+        public static int[] clientLogoff = new int[] {0,0,0};
         public delegate void PacketHandler(int _fromClient, Packet _packet);
         public static Dictionary<int, PacketHandler> packetHandlers;
         public static Dictionary<int, Piece> pieces = new Dictionary<int, Piece>();
@@ -50,7 +51,7 @@ namespace Shogi_GameServer
             Console.WriteLine($"{ _client.Client.RemoteEndPoint} failed to connect: Server is full.");
         }
 
-        private static void InitializeServerData()
+        public static void InitializeServerData()
         {
             for(int i = 1; i <= MaxPlayers; i++)
             {
@@ -60,7 +61,8 @@ namespace Shogi_GameServer
             packetHandlers = new Dictionary<int, PacketHandler>()
             {
                 {(int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived },
-                {(int)ClientPackets.moveset, ServerHandle.PlayerMoveSet }
+                {(int)ClientPackets.moveset, ServerHandle.PlayerMoveSet },
+                {(int)ClientPackets.logOff, ServerHandle.LogOff },
             };
 
             Console.WriteLine("Initialized packets.");

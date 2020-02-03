@@ -20,6 +20,9 @@ namespace Shogi_GameServer
             //Send player into game
             Server.clients[_fromClient].SendIntoGame(_username);
 
+            //Set Login Array
+            Server.clientLogoff[_fromClient] = 1;
+
             // Second player connected, init and send board data
             if (_fromClient == 2)
             {
@@ -62,6 +65,31 @@ namespace Shogi_GameServer
 
             ServerSend.NextTurn(1, Server.playerTurn);
             ServerSend.NextTurn(2, Server.playerTurn);
+        }
+
+        public static void LogOff(int _fromClient, Packet _packet)
+        {
+            bool _clientsRemaining = false;
+            int _clientId = _packet.ReadInt();
+            string _clientName = _packet.ReadString();
+
+            Server.clients[_clientId] = null;
+            Server.clientLogoff[_clientId] = 0;
+            Console.WriteLine($"User '{_clientName}' with ID: {_clientId} has disconnected.");
+            
+            for(int x = 0; x < 3; x++)
+            {
+                if (Server.clientLogoff[x] == 1)
+                    _clientsRemaining = true;
+            }
+
+            if (!_clientsRemaining)
+            {
+                Console.WriteLine($"All clients have logged off, restarting server.");
+                Server.clients = new Dictionary<int, Client>();
+                Server.pieces = new Dictionary<int, Piece>();
+                Server.InitializeServerData();
+            }
         }
     }
 }

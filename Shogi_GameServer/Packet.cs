@@ -22,7 +22,8 @@ namespace Shogi_GameServer
     {
         welcomeReceived = 1,
         playerMovement,
-        moveset
+        moveset,
+        logOff
     }
 
     public class Packet : IDisposable
