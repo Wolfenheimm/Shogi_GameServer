@@ -48,14 +48,25 @@ namespace Shogi_GameServer
             Piece piece = new Piece(_pieceKey, _clientId, _pieceName, _clientInitX, _clientInitY, _clientFinX, _clientFinY);
             Console.WriteLine($"ID: {_clientId} - User {_clientName} wishes to move piece '{_pieceName}' from (X:{_clientInitX}, Y:{_clientInitY}) to (X:{_clientFinX}, Y:{_clientFinY})");
 
-            // Send move to both players
-            ServerSend.MovePiece(1, piece);
-            ServerSend.MovePiece(2, piece);
-            Console.WriteLine($"ID: {_clientId} - Move granted. User {_clientName} has moved '{_pieceName}' from (X:{_clientInitX}, Y:{_clientInitY}) to (X:{_clientFinX}, Y:{_clientFinY})");
+            // Validate Move
+            foreach (KeyValuePair<int, Piece> p in Server.pieces)
+            {
+                if(p.Value.posX == _clientFinX && p.Value.posY == _clientFinY && _clientId != p.Value.id)
+                {
+                    Piece capturedPiece = new Piece(p.Key, p.Value.id, p.Value.pieceName, p.Value.posX, p.Value.posY);
+                    ServerSend.CapturePiece(1, capturedPiece);
+                    ServerSend.CapturePiece(2, capturedPiece);
+                }
+            }
 
             // Update the piece dictionary on move
             Server.pieces[_pieceKey] = new Piece(_pieceKey, _clientId, _pieceName, _clientFinX, _clientFinY);
             Console.WriteLine($"{_pieceName} @ Key {_pieceKey} has been updated on the board");
+
+            // Send move to both players
+            ServerSend.MovePiece(1, piece);
+            ServerSend.MovePiece(2, piece);
+            Console.WriteLine($"ID: {_clientId} - Move granted. User {_clientName} has moved '{_pieceName}' from (X:{_clientInitX}, Y:{_clientInitY}) to (X:{_clientFinX}, Y:{_clientFinY})");
 
             if(Server.playerTurn == 1)
             {

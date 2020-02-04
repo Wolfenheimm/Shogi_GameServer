@@ -14,6 +14,7 @@ namespace Shogi_GameServer
         playerRotation,
         spawnPiece,
         movePiece,
+        capturePiece,
         playerTurn
     }
 

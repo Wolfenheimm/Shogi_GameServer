@@ -118,5 +118,19 @@ namespace Shogi_GameServer
                 SendTCPData(_toClient, _packet);
             }
         }
+
+        public static void CapturePiece(int _toClient, Piece _piece)
+        {
+            using (Packet _packet = new Packet((int)ServerPackets.capturePiece))
+            {
+                _packet.Write(_piece.pieceKey);
+                _packet.Write(_piece.id);
+                _packet.Write(_piece.pieceName);
+                _packet.Write(_piece.posX);
+                _packet.Write(_piece.posY);
+
+                SendTCPData(_toClient, _packet);
+            }
+        }
     }
 }
