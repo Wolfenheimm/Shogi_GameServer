@@ -13,7 +13,7 @@ namespace Shogi_GameServer
 
             Thread mainThread = new Thread(new ThreadStart(MainThread));
             mainThread.Start();
-            Server.Start(2, 26950);
+            Server.Start(2, 26951);
         }
 
         private static void MainThread()

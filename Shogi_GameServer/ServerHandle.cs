@@ -95,5 +95,13 @@ namespace Shogi_GameServer
                 Server.InitializeServerData();
             }
         }
+
+        public static void WelcomeFromHost(int _fromHost, Packet _packet)
+        {
+            int _HostId = _packet.ReadInt();
+            string _message = _packet.ReadString();
+
+            Console.WriteLine($"Host {_HostId} sends message ({_message}).");
+        }
     }
 }

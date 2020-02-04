@@ -45,6 +45,17 @@ namespace Shogi_GameServer
             }
         }
 
+        public static void WelcomeToHost(int _toClient, string _msg)
+        {
+            using (Packet _packet = new Packet((int)HostPackets.instance))
+            {
+                _packet.Write(_toClient);
+                _packet.Write(_msg);
+
+                SendTCPData(_toClient, _packet);
+            }
+        }
+
         public static void SpawnPlayer(int _toClient, Player _player)
         {
             using (Packet _packet = new Packet((int)ServerPackets.spawnPlayer))
@@ -93,6 +104,16 @@ namespace Shogi_GameServer
             using (Packet _packet = new Packet((int)ServerPackets.playerTurn))
             {
                 _packet.Write(_playerTurn);
+
+                SendTCPData(_toClient, _packet);
+            }
+        }
+
+        public static void SetServer(int _toClient, string _msg)
+        {
+            using (Packet _packet = new Packet((int)ServerPackets.playerTurn))
+            {
+                _packet.Write(_msg);
 
                 SendTCPData(_toClient, _packet);
             }

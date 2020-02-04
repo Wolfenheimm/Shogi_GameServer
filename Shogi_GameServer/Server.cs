@@ -18,6 +18,13 @@ namespace Shogi_GameServer
         public static Dictionary<int, PacketHandler> packetHandlers;
         public static Dictionary<int, Piece> pieces = new Dictionary<int, Piece>();
         public static int playerTurn;
+        private static IPAddress localAddr = IPAddress.Parse("127.0.0.1");
+
+        public static int dataBufferSize = 4096;
+        public static string ip = "127.0.0.1";
+        public static int port = 26950;
+        public static int myId = 0;
+        public static TCP tcp;
 
         public static void Start(int _maxPlayers, int _port)
         {
@@ -27,12 +34,15 @@ namespace Shogi_GameServer
             Console.WriteLine("Starting server...");
             InitializeServerData();
 
-            tcpListener = new TcpListener(IPAddress.Any, Port);
+            tcpListener = new TcpListener(localAddr, Port);
             tcpListener.Start();
             tcpListener.BeginAcceptTcpClient(new AsyncCallback(TCPConnectCallback), null);
 
+            //HostStart();
+            //tcp.Connect();
             Console.WriteLine($"Server started on {Port}.");
         }
+
 
         private static void TCPConnectCallback(IAsyncResult _result)
         {
@@ -55,6 +65,150 @@ namespace Shogi_GameServer
             Console.WriteLine($"{ _client.Client.RemoteEndPoint} failed to connect: Server is full or game has not finished yet.");
         }
 
+        private static void HostStart()
+        {
+            tcp = new TCP();
+        }
+
+        public void ConnectToServer()
+        {
+            tcp.Connect();
+        }
+
+        public void Disconnect()
+        {
+            tcp.Disconnect();
+        }
+
+        public class TCP
+        {
+            public TcpClient socket;
+
+            private NetworkStream stream;
+            private Packet receivedData;
+            private byte[] receiveBuffer;
+
+            public void Connect()
+            {
+                socket = new TcpClient
+                {
+                    ReceiveBufferSize = dataBufferSize,
+                    SendBufferSize = dataBufferSize
+                };
+
+                receiveBuffer = new byte[dataBufferSize];
+                socket.BeginConnect(ip, port, ConnectCallback, socket);
+            }
+
+            public void Disconnect()
+            {
+                socket.Close();
+                stream.Close();
+            }
+
+            private void ConnectCallback(IAsyncResult _result)
+            {
+                socket.EndConnect(_result);
+
+                if (!socket.Connected)
+                {
+                    return;
+                }
+
+                stream = socket.GetStream();
+
+                receivedData = new Packet();
+
+                stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
+            }
+
+            public void SendData(Packet _packet)
+            {
+                try
+                {
+                    if (socket != null)
+                    {
+                        stream.BeginWrite(_packet.ToArray(), 0, _packet.Length(), null, null);
+                    }
+                }
+                catch (Exception _ex)
+                {
+                    Console.WriteLine($"Error sending data to server via TCP: {_ex}");
+                }
+            }
+
+            private void ReceiveCallback(IAsyncResult _result)
+            {
+                try
+                {
+                    int _byteLength = stream.EndRead(_result);
+                    if (_byteLength <= 0)
+                    {
+                        //TODO: disconnect
+                        return;
+                    }
+
+                    byte[] _data = new byte[_byteLength];
+                    Array.Copy(receiveBuffer, _data, _byteLength);
+
+                    receivedData.Reset(HandleData(_data));
+                    stream.BeginRead(receiveBuffer, 0, dataBufferSize, ReceiveCallback, null);
+                }
+                catch (Exception _ex)
+                {
+                    Console.WriteLine($"Error receiving TCP data: {_ex}");
+                    //TODO: disconnect
+                }
+            }
+
+            private bool HandleData(byte[] _data)
+            {
+                int _packetLength = 0;
+
+                receivedData.SetBytes(_data);
+
+                if (receivedData.UnreadLength() >= 4)
+                {
+                    _packetLength = receivedData.ReadInt();
+                    if (_packetLength <= 0)
+                    {
+                        return true;
+                    }
+                }
+
+                while (_packetLength > 0 && _packetLength <= receivedData.UnreadLength())
+                {
+                    byte[] _packetBytes = receivedData.ReadBytes(_packetLength);
+                    ThreadManager.ExecuteOnMainThread(() =>
+                    {
+                        using (Packet _packet = new Packet(_packetBytes))
+                        {
+                            int _packetId = _packet.ReadInt();
+                            packetHandlers[_packetId](myId, _packet);
+                        }
+                    });
+
+                    _packetLength = 0;
+
+                    if (receivedData.UnreadLength() >= 4)
+                    {
+                        _packetLength = receivedData.ReadInt();
+                        if (_packetLength <= 0)
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+                if (_packetLength <= 1)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
         public static void InitializeServerData()
         {
             for(int i = 1; i <= MaxPlayers; i++)
@@ -64,9 +218,10 @@ namespace Shogi_GameServer
 
             packetHandlers = new Dictionary<int, PacketHandler>()
             {
-                {(int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived },
+                {(int)ClientPackets.logIn, ServerHandle.WelcomeReceived },
                 {(int)ClientPackets.moveset, ServerHandle.PlayerMoveSet },
                 {(int)ClientPackets.logOff, ServerHandle.LogOff },
+                {(int)HostPackets.instance, ServerHandle.WelcomeFromHost }
             };
 
             Console.WriteLine("Initialized packets.");

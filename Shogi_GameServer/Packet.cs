@@ -20,10 +20,15 @@ namespace Shogi_GameServer
     /// <summary>Sent from client to server.</summary>
     public enum ClientPackets
     {
-        welcomeReceived = 1,
+        logIn = 1,
         playerMovement,
         moveset,
         logOff
+    }
+
+    public enum HostPackets
+    {
+        instance = 10
     }
 
     public class Packet : IDisposable
