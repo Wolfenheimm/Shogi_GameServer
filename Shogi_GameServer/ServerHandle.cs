@@ -51,11 +51,16 @@ namespace Shogi_GameServer
             // Validate Move
             foreach (KeyValuePair<int, Piece> p in Server.pieces)
             {
+                // Piece was captured
                 if(p.Value.posX == _clientFinX && p.Value.posY == _clientFinY && _clientId != p.Value.id)
                 {
                     Piece capturedPiece = new Piece(p.Key, p.Value.id, p.Value.pieceName, p.Value.posX, p.Value.posY);
                     ServerSend.CapturePiece(1, capturedPiece);
                     ServerSend.CapturePiece(2, capturedPiece);
+
+                    // Update the piece dict
+                    p.Value.posX = -1;
+                    p.Value.posY = -1;
                 }
             }
 
