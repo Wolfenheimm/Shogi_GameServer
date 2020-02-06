@@ -153,6 +153,7 @@ namespace Shogi_GameServer
                     if(_client.id != id)
                     {
                         ServerSend.SpawnPlayer(id, _client.player);
+                        ServerSend.NextTurn(2, 1);
                     }
                 }
             }
@@ -162,6 +163,7 @@ namespace Shogi_GameServer
                 if(_client.player != null)
                 {
                     ServerSend.SpawnPlayer(_client.id, player);
+                    ServerSend.NextTurn(1, 1);
                 }
             }
         }
@@ -171,6 +173,14 @@ namespace Shogi_GameServer
             foreach(Piece _piece in Server.pieces.Values)
             {
                 ServerSend.SpawnPiece(id, _piece);
+            }
+        }
+
+        public void SendPromotePiece()
+        {
+            foreach (Piece _piece in Server.pieces.Values)
+            {
+                ServerSend.PromotePiece(id, _piece);
             }
         }
     }

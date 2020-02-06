@@ -34,7 +34,7 @@ namespace Shogi_GameServer
                 Server.clients[2].SendBoardData();
             }
         }
-        public static void PlayerMoveSet(int _fromClient, Packet _packet)
+        public static void MovePiece(int _fromClient, Packet _packet)
         {
             int _pieceKey = _packet.ReadInt();
             int _clientId = _packet.ReadInt();
@@ -46,7 +46,8 @@ namespace Shogi_GameServer
             int _clientFinY = _packet.ReadInt();
 
             Piece piece = new Piece(_pieceKey, _clientId, _pieceName, _clientInitX, _clientInitY, _clientFinX, _clientFinY);
-            Console.WriteLine($"ID: {_clientId} - User {_clientName} wishes to move piece '{_pieceName}' from (X:{_clientInitX}, Y:{_clientInitY}) to (X:{_clientFinX}, Y:{_clientFinY})");
+            //Console.WriteLine($"ID: {_clientId} - User {_clientName} wishes to move piece '{_pieceName}' from (X:{_clientInitX}, Y:{_clientInitY}) to (X:{_clientFinX}, Y:{_clientFinY})");
+            Console.WriteLine($"_clientId: {_clientId} User: {_clientName} Action: MovePiece PieceName:'{_pieceName}' from (X:{_clientInitX}, Y:{_clientInitY}) to (X:{_clientFinX}, Y:{_clientFinY})");
 
             // Validate Move
             foreach (KeyValuePair<int, Piece> p in Server.pieces)
@@ -70,10 +71,12 @@ namespace Shogi_GameServer
 
             // Send move to both players
             ServerSend.MovePiece(1, piece);
+            Console.WriteLine("Executed send MovePiece to Client 1");
             ServerSend.MovePiece(2, piece);
-            Console.WriteLine($"ID: {_clientId} - Move granted. User {_clientName} has moved '{_pieceName}' from (X:{_clientInitX}, Y:{_clientInitY}) to (X:{_clientFinX}, Y:{_clientFinY})");
+            Console.WriteLine("Executed send MovePiece to Client 2");
+            //Console.WriteLine($"ID: {_clientId} - Move granted. User {_clientName} has moved '{_pieceName}' from (X:{_clientInitX}, Y:{_clientInitY}) to (X:{_clientFinX}, Y:{_clientFinY})");
 
-            if(Server.playerTurn == 1)
+            if (Server.playerTurn == 1)
             {
                 Server.playerTurn = 2;
             }
@@ -83,7 +86,20 @@ namespace Shogi_GameServer
             }
 
             ServerSend.NextTurn(1, Server.playerTurn);
+            Console.WriteLine($"Executed [ServerSend.NextTurn] to Client 1 -> Player turn [{Server.playerTurn}]");
             ServerSend.NextTurn(2, Server.playerTurn);
+            Console.WriteLine($"Executed [ServerSend.NextTurn] to Client 2 -> Player turn [{Server.playerTurn}]");
+        }
+
+        public static void PromotePiece(int _fromClient, Packet _packet)
+        {
+            int _pieceKey = _packet.ReadInt();
+
+            // update piece promoted in dictionnary 
+            Server.pieces[_pieceKey].promoted = true;
+
+            ServerSend.PromotePiece(1, Server.pieces[_pieceKey]);
+            ServerSend.PromotePiece(2, Server.pieces[_pieceKey]);
         }
 
         public static void LogOff(int _fromClient, Packet _packet)

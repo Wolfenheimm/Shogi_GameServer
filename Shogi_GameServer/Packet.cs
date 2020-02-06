@@ -15,6 +15,7 @@ namespace Shogi_GameServer
         spawnPiece,
         movePiece,
         capturePiece,
+        promotePiece,
         playerTurn
     }
 
@@ -23,7 +24,8 @@ namespace Shogi_GameServer
     {
         logIn = 1,
         playerMovement,
-        moveset,
+        movePiece,
+        promotePiece,
         logOff
     }
 

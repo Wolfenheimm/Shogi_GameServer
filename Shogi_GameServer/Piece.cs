@@ -9,6 +9,7 @@ namespace Shogi_GameServer
         public int pieceKey;
         public int id;
         public string pieceName;
+        public bool promoted;
         public int posX;
         public int posY;
         public int finPosX;
@@ -23,6 +24,9 @@ namespace Shogi_GameServer
             posY = _posY;
         }
 
+        /**
+         * Constructor 
+         */
         public Piece(int _key, int _clientId, string _pieceName, int _posX, int _posY, int _finPosX, int _finPosY)
         {
             pieceKey = _key;

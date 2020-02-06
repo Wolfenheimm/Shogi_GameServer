@@ -17,7 +17,7 @@ namespace Shogi_GameServer
         public delegate void PacketHandler(int _fromClient, Packet _packet);
         public static Dictionary<int, PacketHandler> packetHandlers;
         public static Dictionary<int, Piece> pieces = new Dictionary<int, Piece>();
-        public static int playerTurn;
+        public static int playerTurn = 1;
         private static IPAddress localAddr = IPAddress.Parse("127.0.0.1");
 
         public static int dataBufferSize = 4096;
@@ -219,15 +219,13 @@ namespace Shogi_GameServer
             packetHandlers = new Dictionary<int, PacketHandler>()
             {
                 {(int)ClientPackets.logIn, ServerHandle.WelcomeReceived },
-                {(int)ClientPackets.moveset, ServerHandle.PlayerMoveSet },
+                {(int)ClientPackets.movePiece, ServerHandle.MovePiece },
+                {(int)ClientPackets.promotePiece, ServerHandle.PromotePiece },
                 {(int)ClientPackets.logOff, ServerHandle.LogOff },
-                {(int)HostPackets.instance, ServerHandle.WelcomeFromHost }
+                {(int)HostPackets.instance, ServerHandle.WelcomeFromHost },
             };
 
             Console.WriteLine("Initialized packets.");
-
-            playerTurn = 1;
-            Console.WriteLine("Set turn to 1.");
         }
 
         public static void InitializeBoard()
