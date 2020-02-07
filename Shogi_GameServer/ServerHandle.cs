@@ -89,9 +89,9 @@ namespace Shogi_GameServer
 
             // Update player turn for each client
             ServerSend.NextTurn(1, Server.playerTurn);
-            Console.WriteLine($"Executed [ServerSend.NextTurn] to Client 1 -> Player turn [{Server.playerTurn}]");
+            Console.WriteLine($"Executed [ServerSend.NextTurn] to Player [1] -> Player turn set to [{Server.playerTurn}]");
             ServerSend.NextTurn(2, Server.playerTurn);
-            Console.WriteLine($"Executed [ServerSend.NextTurn] to Client 2 -> Player turn [{Server.playerTurn}]");
+            Console.WriteLine($"Executed [ServerSend.NextTurn] to Player [2] -> Player turn set to [{Server.playerTurn}]");
         }
 
         public static void PromotePiece(int _fromClient, Packet _packet)
@@ -102,7 +102,9 @@ namespace Shogi_GameServer
             Server.pieces[_pieceKey].promoted = true;
 
             ServerSend.PromotePiece(1, Server.pieces[_pieceKey]);
+            Console.WriteLine("Executed [ServerSend.PromotePiece] to Player 1");
             ServerSend.PromotePiece(2, Server.pieces[_pieceKey]);
+            Console.WriteLine("Executed [ServerSend.PromotePiece] to Player 2");
         }
 
         public static void LogOff(int _fromClient, Packet _packet)
