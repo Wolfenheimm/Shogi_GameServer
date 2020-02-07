@@ -244,7 +244,7 @@ namespace Shogi_GameServer
             Console.WriteLine($"-- Initializing Player [1] Gyokusho piece added on key value {key}");
             pieces.Add(key++, Gyokusho_A);
 
-            Piece Gyokusho_B = new Piece(key, playerTwo, "Osho", 4, 8);
+            Piece Gyokusho_B = new Piece(key, playerTwo, "Gyokusho", 4, 8);
             Console.WriteLine($"-- Initializing Player [2] Gyokusho piece added on key value {key}");
             pieces.Add(key++, Gyokusho_B);            
 
