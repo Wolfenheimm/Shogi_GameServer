@@ -11,7 +11,7 @@
 
   <ItemGroup>
     <Reference Include="Shogi_Packets">
-      <HintPath>..\..\Libraries\Shogi_Packets\Shogi_Packets\bin\Debug\netstandard2.0\Shogi_Packets.dll</HintPath>
+      <HintPath>..\..\Shogi\Assets\Plugins\Shogi_Packets.dll</HintPath>
     </Reference>
   </ItemGroup>
 

@@ -12,7 +12,7 @@ namespace Shogi_GameServer
             int _clientIdCheck = _packet.ReadInt();
             string _username = _packet.ReadString();
 
-            Console.WriteLine($"{Server.clients[_fromClient].tcp.socket.Client.RemoteEndPoint} connected successfully and is now player {_fromClient}");
+            Console.WriteLine($"Incoming transmission -> IPADDR:{Server.clients[_fromClient].tcp.socket.Client.RemoteEndPoint} connected successfully and is now Player [{_fromClient}]");
             if(_fromClient != _clientIdCheck) // Something went terribly wrong
             {
                 Console.WriteLine($"Player \"{_username}\" (ID: {_fromClient}) has assumed the wrong client ID ({_clientIdCheck}).");
@@ -48,7 +48,7 @@ namespace Shogi_GameServer
 
             Piece piece = new Piece(_pieceKey, _clientId, _pieceName, _clientInitX, _clientInitY, _clientFinX, _clientFinY);
             //Console.WriteLine($"ID: {_clientId} - User {_clientName} wishes to move piece '{_pieceName}' from (X:{_clientInitX}, Y:{_clientInitY}) to (X:{_clientFinX}, Y:{_clientFinY})");
-            Console.WriteLine($"_clientId: {_clientId} User: {_clientName} Action: MovePiece PieceName:'{_pieceName}' from (X:{_clientInitX}, Y:{_clientInitY}) to (X:{_clientFinX}, Y:{_clientFinY})");
+            Console.WriteLine($"Incoming transmission -> Player [{_clientId}] Requests Action [MovePiece] on PieceName:'{_pieceName}' from [{_clientInitX}, {_clientInitY}] to [{_clientFinX}, {_clientFinY}].");
 
             // Validate Move
             foreach (KeyValuePair<int, Piece> p in Server.pieces)
@@ -56,6 +56,7 @@ namespace Shogi_GameServer
                 // Piece was captured
                 if(p.Value.posX == _clientFinX && p.Value.posY == _clientFinY && _clientId != p.Value.id)
                 {
+                    Console.WriteLine($"Validation: [ServerSend.MovePiece] -> Capture detected. Player [{_clientId}] '{_pieceName}' captured Player [{p.Value.id}] '{p.Value.pieceName}' @ [{_clientFinX}, {_clientFinY}].");
                     Piece capturedPiece = new Piece(p.Key, p.Value.id, p.Value.pieceName, p.Value.posX, p.Value.posY);
                     ServerSend.CapturePiece(1, capturedPiece);
                     ServerSend.CapturePiece(2, capturedPiece);
@@ -68,13 +69,13 @@ namespace Shogi_GameServer
 
             // Update the piece dictionary on move
             Server.pieces[_pieceKey] = new Piece(_pieceKey, _clientId, _pieceName, _clientFinX, _clientFinY);
-            Console.WriteLine($"{_pieceName} @ Key {_pieceKey} has been updated on the board");
+            Console.WriteLine($"Updated Dictionary [Server.pieces] - {_pieceName} @ Key {_pieceKey} has been updated on the board.");
 
             // Send move to both players
             ServerSend.MovePiece(1, piece);
-            Console.WriteLine("Executed send MovePiece to Client 1");
+            Console.WriteLine("Executed [ServerSend.MovePiece] to Client 1");
             ServerSend.MovePiece(2, piece);
-            Console.WriteLine("Executed send MovePiece to Client 2");
+            Console.WriteLine("Executed [ServerSend.MovePiece] to Client 2");
             //Console.WriteLine($"ID: {_clientId} - Move granted. User {_clientName} has moved '{_pieceName}' from (X:{_clientInitX}, Y:{_clientInitY}) to (X:{_clientFinX}, Y:{_clientFinY})");
 
             if (Server.playerTurn == 1)
@@ -112,7 +113,7 @@ namespace Shogi_GameServer
 
             Server.clients[_clientId] = null;
             Server.clientLogoff[_clientId] = 0;
-            Console.WriteLine($"User '{_clientName}' with ID: {_clientId} has disconnected.");
+            Console.WriteLine($"Incoming transmission -> User '{_clientName}' with ID: {_clientId} has disconnected.");
             
             for(int x = 0; x < 3; x++)
             {
@@ -122,7 +123,7 @@ namespace Shogi_GameServer
 
             if (!_clientsRemaining)
             {
-                Console.WriteLine($"All clients have logged off, restarting server.");
+                Console.WriteLine($"Reset -> All clients have logged off, restarting server.");
                 Server.clients = new Dictionary<int, Client>();
                 Server.pieces = new Dictionary<int, Piece>();
                 Server.totalLoggedIn = 0;
@@ -135,7 +136,7 @@ namespace Shogi_GameServer
             int _HostId = _packet.ReadInt();
             string _message = _packet.ReadString();
 
-            Console.WriteLine($"Host {_HostId} sends message ({_message}).");
+            Console.WriteLine($"Incoming transmission -> Host {_HostId} sends message ({_message}).");
         }
     }
 }

@@ -34,3 +34,6 @@ C:\Unity\Shogi_GameServer\Shogi_GameServer\obj\Debug\netcoreapp3.1\Shogi_GameSer
 C:\Unity\Shogi_GameServer\Shogi_GameServer\bin\Debug\netcoreapp3.1\Shogi_Packets.dll
 C:\Unity\Shogi_GameServer\Shogi_GameServer\bin\Debug\netcoreapp3.1\Shogi_Packets.pdb
 C:\Unity\Shogi_GameServer\Shogi_GameServer\obj\Debug\netcoreapp3.1\Shogi_GameServer.csproj.CopyComplete
+C:\Users\jesse\Documents\GitHub\Shogi_GameServer\Shogi_GameServer\bin\Debug\netcoreapp3.1\Shogi_Packets.dll
+C:\Users\jesse\Documents\GitHub\Shogi_GameServer\Shogi_GameServer\bin\Debug\netcoreapp3.1\Shogi_Packets.pdb
+C:\Users\jesse\Documents\GitHub\Shogi_GameServer\Shogi_GameServer\obj\Debug\netcoreapp3.1\Shogi_GameServer.csproj.CopyComplete
