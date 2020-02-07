@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shogi_Packets;
+using System;
 using System.Collections.Generic;
 using System.Text;
 

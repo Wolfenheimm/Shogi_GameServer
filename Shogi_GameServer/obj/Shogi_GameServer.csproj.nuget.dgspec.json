@@ -1,25 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jesse\\Documents\\GitHub\\Shogi_GameServer\\Shogi_GameServer\\Shogi_GameServer.csproj": {}
+    "C:\\Unity\\Shogi_GameServer\\Shogi_GameServer\\Shogi_GameServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jesse\\Documents\\GitHub\\Shogi_GameServer\\Shogi_GameServer\\Shogi_GameServer.csproj": {
+    "C:\\Unity\\Shogi_GameServer\\Shogi_GameServer\\Shogi_GameServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jesse\\Documents\\GitHub\\Shogi_GameServer\\Shogi_GameServer\\Shogi_GameServer.csproj",
+        "projectUniqueName": "C:\\Unity\\Shogi_GameServer\\Shogi_GameServer\\Shogi_GameServer.csproj",
         "projectName": "Shogi_GameServer",
-        "projectPath": "C:\\Users\\jesse\\Documents\\GitHub\\Shogi_GameServer\\Shogi_GameServer\\Shogi_GameServer.csproj",
-        "packagesPath": "C:\\Users\\jesse\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jesse\\Documents\\GitHub\\Shogi_GameServer\\Shogi_GameServer\\obj\\",
+        "projectPath": "C:\\Unity\\Shogi_GameServer\\Shogi_GameServer\\Shogi_GameServer.csproj",
+        "packagesPath": "C:\\Users\\micha\\.nuget\\packages\\",
+        "outputPath": "C:\\Unity\\Shogi_GameServer\\Shogi_GameServer\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
-          "C:\\Users\\jesse\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\micha\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"

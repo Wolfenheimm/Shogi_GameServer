@@ -20,3 +20,17 @@ C:\Users\jesse\Documents\GitHub\Shogi_GameServer\Shogi_GameServer\obj\Debug\netc
 C:\Users\jesse\Documents\GitHub\Shogi_GameServer\Shogi_GameServer\obj\Debug\netcoreapp3.1\Shogi_GameServer.AssemblyInfo.cs
 C:\Users\jesse\Documents\GitHub\Shogi_GameServer\Shogi_GameServer\obj\Debug\netcoreapp3.1\Shogi_GameServer.dll
 C:\Users\jesse\Documents\GitHub\Shogi_GameServer\Shogi_GameServer\obj\Debug\netcoreapp3.1\Shogi_GameServer.pdb
+C:\Unity\Shogi_GameServer\Shogi_GameServer\bin\Debug\netcoreapp3.1\Shogi_GameServer.exe
+C:\Unity\Shogi_GameServer\Shogi_GameServer\bin\Debug\netcoreapp3.1\Shogi_GameServer.deps.json
+C:\Unity\Shogi_GameServer\Shogi_GameServer\bin\Debug\netcoreapp3.1\Shogi_GameServer.runtimeconfig.json
+C:\Unity\Shogi_GameServer\Shogi_GameServer\bin\Debug\netcoreapp3.1\Shogi_GameServer.runtimeconfig.dev.json
+C:\Unity\Shogi_GameServer\Shogi_GameServer\bin\Debug\netcoreapp3.1\Shogi_GameServer.dll
+C:\Unity\Shogi_GameServer\Shogi_GameServer\bin\Debug\netcoreapp3.1\Shogi_GameServer.pdb
+C:\Unity\Shogi_GameServer\Shogi_GameServer\obj\Debug\netcoreapp3.1\Shogi_GameServer.csprojAssemblyReference.cache
+C:\Unity\Shogi_GameServer\Shogi_GameServer\obj\Debug\netcoreapp3.1\Shogi_GameServer.AssemblyInfoInputs.cache
+C:\Unity\Shogi_GameServer\Shogi_GameServer\obj\Debug\netcoreapp3.1\Shogi_GameServer.AssemblyInfo.cs
+C:\Unity\Shogi_GameServer\Shogi_GameServer\obj\Debug\netcoreapp3.1\Shogi_GameServer.dll
+C:\Unity\Shogi_GameServer\Shogi_GameServer\obj\Debug\netcoreapp3.1\Shogi_GameServer.pdb
+C:\Unity\Shogi_GameServer\Shogi_GameServer\bin\Debug\netcoreapp3.1\Shogi_Packets.dll
+C:\Unity\Shogi_GameServer\Shogi_GameServer\bin\Debug\netcoreapp3.1\Shogi_Packets.pdb
+C:\Unity\Shogi_GameServer\Shogi_GameServer\obj\Debug\netcoreapp3.1\Shogi_GameServer.csproj.CopyComplete

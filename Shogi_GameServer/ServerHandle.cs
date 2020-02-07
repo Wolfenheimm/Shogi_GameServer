@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shogi_Packets;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -85,6 +86,7 @@ namespace Shogi_GameServer
                 Server.playerTurn = 1;
             }
 
+            // Update player turn for each client
             ServerSend.NextTurn(1, Server.playerTurn);
             Console.WriteLine($"Executed [ServerSend.NextTurn] to Client 1 -> Player turn [{Server.playerTurn}]");
             ServerSend.NextTurn(2, Server.playerTurn);
