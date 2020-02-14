@@ -73,9 +73,9 @@ namespace Shogi_GameServer
 
             // Send move to both players
             ServerSend.MovePiece(1, piece);
-            Console.WriteLine("Executed [ServerSend.MovePiece] to Client 1");
+            Console.WriteLine("Executed [ServerSend.MovePiece] to Client [1]");
             ServerSend.MovePiece(2, piece);
-            Console.WriteLine("Executed [ServerSend.MovePiece] to Client 2");
+            Console.WriteLine("Executed [ServerSend.MovePiece] to Client [2]");
             //Console.WriteLine($"ID: {_clientId} - Move granted. User {_clientName} has moved '{_pieceName}' from (X:{_clientInitX}, Y:{_clientInitY}) to (X:{_clientFinX}, Y:{_clientFinY})");
 
             if (Server.playerTurn == 1)
@@ -102,9 +102,9 @@ namespace Shogi_GameServer
             Server.pieces[_pieceKey].promoted = true;
 
             ServerSend.PromotePiece(1, Server.pieces[_pieceKey]);
-            Console.WriteLine("Executed [ServerSend.PromotePiece] to Player 1");
+            Console.WriteLine("Executed [ServerSend.PromotePiece] to Player [1]");
             ServerSend.PromotePiece(2, Server.pieces[_pieceKey]);
-            Console.WriteLine("Executed [ServerSend.PromotePiece] to Player 2");
+            Console.WriteLine("Executed [ServerSend.PromotePiece] to Player [2]");
         }
 
         public static void LogOff(int _fromClient, Packet _packet)
